@@ -3,13 +3,17 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from rounds.call_market_price import MarketPrice, ensure_tuples, get_cxq
-from rounds.call_market_price import Principle
+from call_market_price import MarketPrice, ensure_tuples, get_cxq
+from call_market_price import Principle, OrderType
 # from rounds.models import *
 
+class TestOrder:
+    def __init__(self):
+        self.price = None
+        self.quantity = None
 
 def o(price=None, quantity=None):
-    _o = Order()
+    _o = TestOrder()
     _o.price = price
     _o.quantity = quantity
     return _o
@@ -558,3 +562,7 @@ class TestCallMarketPrice(unittest.TestCase):
         self.assertIsNone(mp.price_df)
         self.assertFalse(mp.has_bids)
         self.assertFalse(mp.has_offers)
+
+
+if __name__ == '__main__':
+    unittest.main()

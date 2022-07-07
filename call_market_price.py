@@ -1,9 +1,16 @@
+from enum import Enum
 from operator import attrgetter
 
 import numpy as np
 import pandas as pd
 
-from rounds.models import *
+
+class OrderType(Enum):
+    """
+        Enumeration representing the order type BID/OFFER
+    """
+    BID = -1
+    OFFER = 1
 
 
 class Principle(Enum):
