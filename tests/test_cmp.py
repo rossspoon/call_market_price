@@ -3,8 +3,8 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from call_market_price import MarketPrice, ensure_tuples, get_cxq
-from call_market_price import Principle, OrderType
+from src.call_market_price import MarketPrice, ensure_tuples, get_cxq
+from src.call_market_price import Principle, OrderType
 # from rounds.models import *
 
 class TestOrder:
