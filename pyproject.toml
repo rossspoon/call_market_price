@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "call_market_price"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Ross Spoon", email="rspoon@vt.edu" },
 ]
