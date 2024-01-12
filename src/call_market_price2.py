@@ -40,7 +40,7 @@ def ensure_tuples(bids, offers):
     return b, o
 
 
-class MarketPrice:
+class MarketPrice2:
     """
     Implementation of the Call Market price algorithm described by: Sun et al. (2010)
     https://www.researchgate.net/publication/241567616_Algorithm_of_Call_Auction_Price
@@ -297,7 +297,7 @@ def count_volume(orders):
     return vol
 
 
-class OrderFill:
+class OrderFill2:
     SORT_KEY = attrgetter('price', 'quantity')
 
     def __init__(self, orders):
@@ -307,10 +307,10 @@ class OrderFill:
         self.orders = orders
 
         self.bids = [o for o in orders if o.order_type == OrderType.BID.value]
-        self.bids.sort(key=OrderFill.SORT_KEY, reverse=True)
+        self.bids.sort(key=OrderFill2.SORT_KEY, reverse=True)
 
         self.offers = [o for o in orders if o.order_type == OrderType.OFFER.value]
-        self.offers.sort(key=OrderFill.SORT_KEY)
+        self.offers.sort(key=OrderFill2.SORT_KEY)
 
     def select_bids(self, thold_price):
         """

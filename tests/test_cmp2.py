@@ -3,8 +3,10 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from src.call_market_price2 import MarketPrice, ensure_tuples
-from src.call_market_price2 import Principle, OrderType
+import os
+print(os.getcwd())
+
+from src.call_market_price2 import MarketPrice2, ensure_tuples
 # from rounds.models import *
 
 class TestOrder:
@@ -20,7 +22,7 @@ def o(price=None, quantity=None):
 
 
 # noinspection DuplicatedCode
-class TestCallMarketPrice(unittest.TestCase):
+class TestCallMarketPrice2(unittest.TestCase):
 
 
     def test_ensure_tuples(self):
@@ -33,7 +35,7 @@ class TestCallMarketPrice(unittest.TestCase):
         o_tup = [(5, 15), (6, 16)]
 
         # Test object
-        MarketPrice(None, None)
+        MarketPrice2(None, None)
 
         # Test with lists of Orders
         b_actual, o_actual = ensure_tuples(bids, offers)
@@ -56,7 +58,7 @@ class TestCallMarketPrice(unittest.TestCase):
         # Set up
         b_vol = [(1, 1), (2, 2)]
         o_vol = [(1, 1), (2, 2)]
-        mp = MarketPrice(b_vol, o_vol)
+        mp = MarketPrice2(b_vol, o_vol)
 
         # Execute
         price, volume = mp.get_market_price()  
@@ -69,7 +71,7 @@ class TestCallMarketPrice(unittest.TestCase):
         # Set up
         b_resid = [(4, 2), (6, 1)]
         o_resid = [(4, 1), (6, 1)]
-        mp = MarketPrice(b_resid, o_resid)
+        mp = MarketPrice2(b_resid, o_resid)
 
         # Execute
         price, volume = mp.get_market_price()  
@@ -82,7 +84,7 @@ class TestCallMarketPrice(unittest.TestCase):
         # Set up
         b_press = [(55, 4)]
         o_press = [(50, 10)]
-        mp = MarketPrice(b_press, o_press)
+        mp = MarketPrice2(b_press, o_press)
 
         # Execute
         price, volume = mp.get_market_price()  
@@ -95,7 +97,7 @@ class TestCallMarketPrice(unittest.TestCase):
         # Set up
         b_ref = [(5, 10), (6, 10)]
         o_ref = [(5, 10), (6, 10)]
-        mp = MarketPrice(b_ref, o_ref)
+        mp = MarketPrice2(b_ref, o_ref)
 
         # Execute
         price, volume = mp.get_market_price()  
@@ -108,7 +110,7 @@ class TestCallMarketPrice(unittest.TestCase):
         # Set up
         b_no_trade = [(1, 1)]
         o_no_trade = [(10, 1)]
-        mp = MarketPrice(b_no_trade, o_no_trade)
+        mp = MarketPrice2(b_no_trade, o_no_trade)
 
         # Execute
         price, volume = mp.get_market_price()  
@@ -125,7 +127,7 @@ class TestCallMarketPrice(unittest.TestCase):
                   o(price=6, quantity=16)]
 
         # Offers None
-        mp = MarketPrice(bids, None)
+        mp = MarketPrice2(bids, None)
         p, v = mp.get_market_price()
         self.assertEqual(p, 11)
         self.assertEqual(v, 0)
@@ -133,7 +135,7 @@ class TestCallMarketPrice(unittest.TestCase):
         self.assertFalse(mp.has_offers)
 
         # Offers Empty
-        mp = MarketPrice(bids, [])
+        mp = MarketPrice2(bids, [])
         p, v = mp.get_market_price()
         self.assertEqual(p, 11)
         self.assertEqual(v, 0)
@@ -141,7 +143,7 @@ class TestCallMarketPrice(unittest.TestCase):
         self.assertFalse(mp.has_offers)
 
         # Bids None
-        mp = MarketPrice(None, offers)
+        mp = MarketPrice2(None, offers)
         p, v = mp.get_market_price()
         self.assertEqual(p, 5)
         self.assertEqual(v, 0)
@@ -149,7 +151,7 @@ class TestCallMarketPrice(unittest.TestCase):
         self.assertTrue(mp.has_offers)
 
         # Bids Empty
-        mp = MarketPrice([], offers)
+        mp = MarketPrice2([], offers)
         p, v = mp.get_market_price()
         self.assertEqual(p, 5)
         self.assertEqual(v, 0)
@@ -157,7 +159,7 @@ class TestCallMarketPrice(unittest.TestCase):
         self.assertTrue(mp.has_offers)
 
         # Both None
-        mp = MarketPrice(None, None)
+        mp = MarketPrice2(None, None)
         p, v = mp.get_market_price()
         self.assertIsNone(p)
         self.assertEqual(v, 0)
@@ -165,7 +167,7 @@ class TestCallMarketPrice(unittest.TestCase):
         self.assertFalse(mp.has_offers)
 
         # Both Empty
-        mp = MarketPrice([], [])
+        mp = MarketPrice2([], [])
         p, v = mp.get_market_price()
         self.assertIsNone(p)
         self.assertEqual(v, 0)
