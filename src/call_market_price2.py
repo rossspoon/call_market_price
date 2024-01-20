@@ -123,7 +123,7 @@ class MarketPrice2:
 
 
 
-    def get_market_price(self, round_price=False):
+    def get_market_price(self)
         """
         Implementation of the Call Market price algorithm described by: Sun et al. (2010)
         https://www.researchgate.net/publication/241567616_Algorithm_of_Call_Auction_Price
@@ -168,10 +168,7 @@ class MarketPrice2:
         
         # If there is a bid-ask spread return the midpoint price
         if min_offer_price > max_bid_price:
-            if round_price:
-                price = round((max(cand_resid) + min(cand_resid))/2)
-            else:
-                price = (max(cand_resid) + min(cand_resid))/2
+            return (max(cand_resid) + min(cand_resid))/2
 
 
         
@@ -224,10 +221,7 @@ class MarketPrice2:
                 cand_resid.append(p)
         
         
-        if round_price:
-            price = round((max(cand_resid) + min(cand_resid))/2)
-        else:
-            price = (max(cand_resid) + min(cand_resid))/2
+        price = (max(cand_resid) + min(cand_resid))/2
         
         return price, mev
 
