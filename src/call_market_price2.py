@@ -123,7 +123,7 @@ class MarketPrice2:
 
 
 
-    def get_market_price(self)
+    def get_market_price(self):
         """
         Implementation of the Call Market price algorithm described by: Sun et al. (2010)
         https://www.researchgate.net/publication/241567616_Algorithm_of_Call_Auction_Price
