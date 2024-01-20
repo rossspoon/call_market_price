@@ -168,7 +168,7 @@ class MarketPrice2:
         
         # If there is a bid-ask spread return the midpoint price
         if min_offer_price > max_bid_price:
-            return (max(cand_resid) + min(cand_resid))/2
+            return (max_bid_price + min_offer_price)/2
 
 
         
@@ -191,37 +191,36 @@ class MarketPrice2:
                 
         if len(cand_mev) == 1:
             return cand_mev[0], mev
-        
             
-        # calculate the residudal for all prices between the MEV candidates
-        working_csq = 0
-        working_cbq = 0
-        full_csq = {}
-        full_cbq = {}
-        for p in range(min(cand_mev), max(cand_mev) + 1):
-            if p in cand_mev:
-                working_csq = self.csq[p]
-            full_csq[p] = working_csq
+        # # calculate the residudal for all prices between the MEV candidates
+        # working_csq = 0
+        # working_cbq = 0
+        # full_csq = {}
+        # full_cbq = {}
+        # for p in range(min(cand_mev), max(cand_mev) + 1):
+        #     if p in cand_mev:
+        #         working_csq = self.csq[p]
+        #     full_csq[p] = working_csq
             
-        for p in range(max(cand_mev), min(cand_mev) -1, -1):
-            if p in cand_mev:
-                working_cbq = self.cbq[p]
-            full_cbq[p] = working_cbq
+        # for p in range(max(cand_mev), min(cand_mev) -1, -1):
+        #     if p in cand_mev:
+        #         working_cbq = self.cbq[p]
+        #     full_cbq[p] = working_cbq
         
         
-        # determine candidate prices based on min resid
-        cand_resid = []
-        min_resid = 10000000
-        for p in range(min(cand_mev), max(cand_mev) + 1):
-            r = abs(full_csq[p] - full_cbq[p])
-            if r < min_resid:
-                min_resid = r
-                cand_resid = [p]
-            elif r == min_resid:
-                cand_resid.append(p)
+        # # determine candidate prices based on min resid
+        # cand_resid = []
+        # min_resid = 10000000
+        # for p in range(min(cand_mev), max(cand_mev) + 1):
+        #     r = abs(full_csq[p] - full_cbq[p])
+        #     if r < min_resid:
+        #         min_resid = r
+        #         cand_resid = [p]
+        #     elif r == min_resid:
+        #         cand_resid.append(p)
         
         
-        price = (max(cand_resid) + min(cand_resid))/2
+        price = (max(cand_mev) + min(cand_mev))/2
         
         return price, mev
 

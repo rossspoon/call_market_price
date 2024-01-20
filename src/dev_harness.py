@@ -1,13 +1,11 @@
-from src.call_market_price2 import MarketPrice
+from src.call_market_price2 import MarketPrice2
 
-# bids = [(25,1), (15, 2), (5,2)]
-# offers = [(10,1), (20,1), (30, 2), (40, 2)]
-# bids = [(15,1)]
-# offers = [(10,2)]
-# bids = [(1, 1), (2, 2)]
-# offers = [(1, 1), (2, 2)]
-bids = [(4, 2), (6, 1)]
-offers = [(4, 1), (6, 1)]
+#bids = [(27,1), (15, 2), (5,2)]
+#offers = [(10,1), (20,1), (30, 2), (40, 2)]
+#bids = [(4, 2), (6, 1)]
+#offers = [(4, 1), (6, 1)]
+bids = [(4,1), (5,1),(6,1),(8,1)]
+offers = [(2,1), (4,1), (7, 1), (9, 1)]
 
 
 
@@ -19,7 +17,7 @@ keys = list(g.groups.keys())
 
 
 def run_market(bids, offers):
-    cm = MarketPrice(bids, offers)
+    cm = MarketPrice2(bids, offers)
     p,v = cm.get_market_price()
     return p, v, cm
 
@@ -57,4 +55,7 @@ def do_it(g):
 p, v, cm = run_market(bids, offers)
 plot_it(p, v, cm.csq, cm.cbq)
 
+print(p,v)
+print(f"CSQ: {cm.csq}")
+print(f"CBQ: {cm.cbq}")
 
