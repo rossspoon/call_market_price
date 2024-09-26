@@ -168,7 +168,8 @@ class MarketPrice2:
         
         # If there is a bid-ask spread return the midpoint price
         if min_offer_price > max_bid_price:
-            return (max_bid_price + min_offer_price)/2
+            midpoint_price = (max_bid_price + min_offer_price)/2
+            return midpoint_price, 0
 
 
         
